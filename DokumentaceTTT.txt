@@ -1,7 +1,7 @@
 Uvodní část:
 Název: Piškvorky.
 
-Úkolem hry je poskládat svůj znak do řady. oho lze dosáhnout postupným seřazením znaků do volných buněk, které jsou uspořádány do jednoho velkého čtverce.
+Úkolem hry je poskládat svůj znak do řady. Toho lze dosáhnout postupným seřazením znaků do volných buněk, které jsou uspořádány do jednoho velkého čtverce.
 
 Pokud jeden z hráčů vystaví N svých znaků za sebou / diagonálně, vyhrává.
 
