@@ -38,7 +38,7 @@ class TicTacToe(tk.Tk):
         top.title("Choose Board Size")
         tk.Label(top, text="Select the size of the board:").pack(padx=10, pady=10)
         size_var = tk.StringVar(value="3")
-        tk.OptionMenu(top, size_var, *[str(i) for i in range(3, 10)]).pack(padx=10, pady=10)
+        tk.OptionMenu(top, size_var, 3, 5).pack(padx=10, pady=10)
         tk.Button(top, text="OK", command=on_ok).pack(padx=10, pady=10)
 
         top.grab_set()
