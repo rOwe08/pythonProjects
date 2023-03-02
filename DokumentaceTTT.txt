@@ -11,7 +11,7 @@ Na začátku hráč má před sebou dvě menu a prázdné okno:
 
 1)Menu "Choose módě" - nabídka výběru počtu hráčů, stisknutím tlačítek ("1", "2"), můžeme si vybrat počet hráčů ("1" - hra proti PC, "2" - hra proti hráču(lokálně)).
 
-2)Menu "Choose board size" - nabídka výběru velikosti pole, stisknutím tlačítek ("3", "4", ..., "9"), můžeme si vybrat počet řádku a sloupců ("3" - 3x3 pole atd.)
+2)Menu "Choose board size" - nabídka výběru velikosti pole, stisknutím tlačítek ("3", "5"), můžeme si vybrat počet řádku a sloupců ("3" - 3x3 pole atd.)
 
 Stisknutím tlačítka "OK" obě menu, hra začíná, hráč má před sebou NxN bloků(tk.Button), když nějaký hráč zvitizi, v tomto případě vyskočí okno s nápisem "Player X/O(záleží na tom, jakým znakem hraje hráč) wins!", po zavrenim kterého, stisknutím tlačítka "Play Again" hra začne znovu.
 
