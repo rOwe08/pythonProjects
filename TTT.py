@@ -1,3 +1,4 @@
+from cmath import inf
 import tkinter as tk
 import tkinter.messagebox as messagebox
 import random
@@ -67,7 +68,7 @@ class TicTacToe(tk.Tk):
 
             self.board[row][col] = self.player
             button = self.buttons[row][col]
-            button.configure(text=self.player, state="disabled")
+            button.configure(text="X", state="disabled")
 
             if self.check_win():
                 self.show_win_message()
@@ -88,38 +89,80 @@ class TicTacToe(tk.Tk):
             messagebox.showerror("Tic Tac Toe", "Invalid move")
 
     def pc_play(self):
+        bestMove = self.findBestMove()
+        row, col = bestMove[0], bestMove[1]
 
-        empty_cells = [(i, j) for i in range(self.board_size) for j in range(self.board_size) if self.board[i][j] is None]
-
-        if self.board[self.centeri][self.centerj] is None:
-            row, col = self.centeri, self.centerj 
-        else:
-            row, col = random.choice(empty_cells)
-
-        self.player = "O"
-        self.board[row][col] = self.player
+        self.board[row][col] = "O"
         button = self.buttons[row][col]
-        button.configure(text=self.player, state="disabled")
-        
-        if self.check_win():
+        button.configure(text="O", state="disabled")
+
+        if self.check_win("O") or self.check_win("X"):
             self.show_win_message()
         elif self.check_tie():
             self.show_tie_message()
-        else:
-            self.player = "X"
 
-    def check_win(self):
+    def minimax(self, depth, IsMaximizingPlayer):
+        if self.check_win("O"):
+            return 1
+        if self.check_win("X"):
+            return -1
+        if self.check_tie():
+            return 0
+        
+        if IsMaximizingPlayer:
+            bestScore = -inf
+            for i in range(self.board_size):
+                for j in range(self.board_size):
+                    if self.board[i][j] is None: 
+                        self.board[i][j] = "O"
+                        score = self.minimax(depth + 1, False)
+                        self.board[i][j] = None
+                        if score > bestScore:
+                            bestScore = score
+            return bestScore
+        else:
+            bestScore = +inf
+            for i in range(self.board_size):
+                for j in range(self.board_size):
+                    if self.board[i][j] is None: 
+                        self.board[i][j] = "X"
+                        score = self.minimax(depth + 1, True)
+                        self.board[i][j] = None
+                        if score < bestScore:
+                            bestScore = score
+            return bestScore
+        
+    def findBestMove(self):
+        empty_cells = [(i, j) for i in range(self.board_size) for j in range(self.board_size) if self.board[i][j] is None]
+        depth = len(empty_cells)
+        bestScore = -inf
+
+        for i in range(self.board_size):
+            for j in range(self.board_size):
+                self.player = "O"
+                if self.board[i][j] is None:
+                    self.board[i][j] = self.player
+                    score = self.minimax(0, False)
+                    self.board[i][j] = None
+                    if score > bestScore:
+                        bestScore = score
+                        bestMove = [i, j]
+
+        return bestMove
+
+    def check_win(self, letter):
         for row in range(self.board_size):
-            if all(self.board[row][col] == self.player for col in range(self.board_size)):
+            if all(self.board[row][col] == letter for col in range(self.board_size)):
                 return True
             
         for col in range(self.board_size):
-            if all(self.board[row][col] == self.player for row in range(self.board_size)):
+            if all(self.board[row][col] == letter for row in range(self.board_size)):
                 return True
             
-        if all(self.board[i][i] == self.player for i in range(self.board_size)):
+        if all(self.board[i][i] == letter for i in range(self.board_size)):
             return True
-        if all(self.board[i][self.board_size - 1 - i] == self.player for i in range(self.board_size)):
+        
+        if all(self.board[i][self.board_size - 1 - i] == letter for i in range(self.board_size)):
             return True
         
         return False
