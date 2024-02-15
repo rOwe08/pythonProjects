@@ -1,0 +1,56 @@
+Uvodní část:
+Název: Piškvorky.
+
+Úkolem hry je poskládat svůj znak do řady. Toho lze dosáhnout postupným seřazením znaků do volných buněk, které jsou uspořádány do jednoho velkého čtverce.
+
+Pokud jeden z hráčů vystaví N svých znaků za sebou / diagonálně, vyhrává.
+
+Pokud se žádnému z hráčů nepodařilo vyhrát, tj. volné buňky skončily, ale vítěz nebyl nikdy nalezen, pak se počítá remíza.
+
+Na začátku hráč má před sebou dvě menu a prázdné okno:
+
+1)Menu "Choose módě" - nabídka výběru počtu hráčů, stisknutím tlačítek ("1", "2"), můžeme si vybrat počet hráčů ("1" - hra proti PC, "2" - hra proti hráču(lokálně)).
+
+2)Menu "Choose board size" - nabídka výběru velikosti pole, stisknutím tlačítek ("3", "5"), můžeme si vybrat počet řádku a sloupců ("3" - 3x3 pole atd.)
+
+Stisknutím tlačítka "OK" obě menu, hra začíná, hráč má před sebou NxN bloků(tk.Button), když nějaký hráč zvitizi, v tomto případě vyskočí okno s nápisem "Player X/O(záleží na tom, jakým znakem hraje hráč) wins!", po zavrenim kterého, stisknutím tlačítka "Play Again" hra začne znovu.
+
+V případě remízy, vyskočí okno s nápisem "It's a tie!".
+
+Programatorská část:
+
+Dekompozice:
+
+Celkem v programu je pouze 1 script: TTT.py
+
+Popsaní scriptů:
+
+1)TTT.py je jeginy soubor, který zodpovídá za chování všech komponentů(classu a funkce) dohromady a organizované
+
+Skládá z classu:
+
+class TicTacToe(tk.Tk):
+
+Který se skládá z funkce:
+
+def __init__(self, *args, **kwargs): která je zodpovědná za nasataveni classu TicTacToe, běžná struktura __init__ funkce v Pythonu
+
+def choose_board_size(self): která je zodpovědná za velikost pole
+
+def choose_módě(self): která je zodpovědná za výběr režimu(vs PC nebo vs Player(lokálně))
+
+def play(self, row, col): která je zodpovědná za nastavení buněk a tlačítek na poli, za strukturu a chování všech ostatních funkcí
+
+def pc_play(self): která je zodpovědná za chování pole, když hráč hraje proti počítači(vybrán módě "1")
+
+def check_win(self): která je zodpovědná za kontrolu viteztvi v poli
+
+def check_tie(self): která je zodpovědná za kontrolu remíze v poli
+
+def show_tie_message(self): která je volána remízou.
+
+def show_win_message(self): která je volána když nějaký hráč vyhraje.
+
+def play_again(self): která je volána kdy tlačítko "Play Again" je stisknuto.
+
+Datum : 2023-02-0
