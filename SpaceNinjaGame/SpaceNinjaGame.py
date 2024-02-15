@@ -9,14 +9,15 @@ pygame.display.set_caption("Space Ninja")
 
 
 def main():
-    IsRunning = True
+    is_running = True
     print("Space Ninja Game")
-    while IsRunning:
+    while is_running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                IsRunning = False
+                is_running = False
                 break
     pygame.quit()
 
-if(__name__ == "__main__"):
+
+if __name__ == "__main__":
     main()
