@@ -7,7 +7,7 @@ WINDOW = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 
 pygame.display.set_caption("Space Ninja")
 
-BG = pygame.image.load("Background.jpg")
+BG = pygame.transform.scale(pygame.image.load("Background.jpg"), (WINDOW_WIDTH, WINDOW_HEIGHT))
 
 def draw_image(image, dest):
     WINDOW.blit(image, dest)
