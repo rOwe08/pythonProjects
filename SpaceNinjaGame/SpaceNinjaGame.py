@@ -7,6 +7,11 @@ WINDOW = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 
 pygame.display.set_caption("Space Ninja")
 
+BG = pygame.image.load("Background.jpg")
+
+def draw_image(image, dest):
+    WINDOW.blit(image, dest)
+    pygame.display.update()
 
 def main():
     is_running = True
@@ -16,6 +21,8 @@ def main():
             if event.type == pygame.QUIT:
                 is_running = False
                 break
+        draw_image(BG, (0,0))
+
     pygame.quit()
 
 
